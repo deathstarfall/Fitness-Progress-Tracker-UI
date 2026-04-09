@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="fitness_css_proj.css">
+</head>
+
+<body>
+
+  <!--ONBOARDING OVERLAY-->
+  <div class="onboarding-overlay" id="onboardingOverlay">
+    <div class="onboarding-card">
+
+      <div class="ob-brand">
+        <div class="ob-logo-ring"></div>
+        <div class="ob-brand-text">Fitness<span>UI</span></div>
+      </div>
+
+      <div class="ob-step-dots">
+        <div class="ob-dot active" id="obDot0"></div>
+        <div class="ob-dot" id="obDot1"></div>
+        <div class="ob-dot" id="obDot2"></div>
+      </div>
+
+      <!--   Personal Info   -->
+      <div class="ob-step active" id="obStep0">
+        <div class="ob-heading">Welcome! Let's set you up. 👋</div>
+        <div class="ob-subhead">Tell us a bit about yourself so we can <em>personalise</em> your dashboard.</div>
+        <div class="ob-form-grid">
+          <div class="ob-fg">
+            <label class="ob-label">First Name</label>
+            <input class="ob-input" id="ob_firstName" type="text" placeholder="e.g. Shreyansh" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Last Name</label>
+            <input class="ob-input" id="ob_lastName" type="text" placeholder="e.g. Khatri" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Age</label>
+            <input class="ob-input" id="ob_age" type="number" min="10" max="110" placeholder="e.g. 28" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Weight (kg)</label>
+            <input class="ob-input" id="ob_weight" type="number" min="20" max="300" placeholder="e.g. 74" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Height (cm)</label>
+            <input class="ob-input" id="ob_height" type="number" min="50" max="250" placeholder="e.g. 178" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Gender</label>
+            <select class="ob-input" id="ob_gender">
+              <option value="">Select…</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other / Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="ob-nav">
+          <button class="ob-btn-next" id="obNext0">Continue →</button>
+        </div>
+      </div>
+
+      <!--    Today's Activity   -->
+      <div class="ob-step" id="obStep1">
+        <div class="ob-heading">Today's Activity 🏃</div>
+        <div class="ob-subhead">Enter what you've tracked so far <em>today</em>. Leave blank if you haven't started yet.</div>
+        <div class="ob-form-grid">
+          <div class="ob-fg ob-fg-full">
+            <label class="ob-label">Steps Walked Today</label>
+            <input class="ob-input" id="ob_steps" type="number" min="0" max="100000" placeholder="e.g. 8266" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Distance (km)</label>
+            <input class="ob-input" id="ob_distance" type="number" min="0" step="0.1" placeholder="e.g. 5.84" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Active Minutes</label>
+            <input class="ob-input" id="ob_activeMin" type="number" min="0" max="1440" placeholder="e.g. 45" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Calories Burned</label>
+            <input class="ob-input" id="ob_caloriesBurned" type="number" min="0" placeholder="e.g. 1950" />
+          </div>
+          <div class="ob-fg">
+            <label class="ob-label">Elevation Gain (m)</label>
+            <input class="ob-input" id="ob_elevation" type="number" min="0" placeholder="e.g. 0" />
+          </div>
+          <div class="ob-fg ob-fg-full">
+            <label class="ob-label">Activity Type Today</label>
+            <div class="ob-radio-group" id="ob_activityType">
+              <div class="ob-radio-btn selected" data-val="walking">🚶 Walking</div>
+              <div class="ob-radio-btn" data-val="running">🏃 Running</div>
+              <div class="ob-radio-btn" data-val="cycling">🚴 Cycling</div>
+              <div class="ob-radio-btn" data-val="gym">🏋️ Gym</div>
+              <div class="ob-radio-btn" data-val="rest">😴 Rest Day</div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-nav">
+          <button class="ob-btn-back" id="obBack1">← Back</button>
+          <button class="ob-btn-next" id="obNext1">Continue →</button>
+        </div>
+      </div>
+
+      <!--    Goals   -->
+      <div class="ob-step" id="obStep2">
+        <div class="ob-heading">Set Your Goals 🎯</div>
+        <div class="ob-subhead">Define your daily targets. These power your <em>ring and progress</em> metrics.</div>
+        <div class="ob-form-grid">
+          <div class="ob-fg ob-fg-full">
+            <label class="ob-label">Daily Step Goal</label>
+            <input class="ob-input" id="ob_stepGoal" type="number" min="1000" max="50000" placeholder="e.g. 10000" />
+          </div>
+          <div class="ob-fg ob-fg-full">
+            <label class="ob-label">Daily Move Goal (KCAL)</label>
+            <input class="ob-input" id="ob_moveGoal" type="number" min="50" max="2000" placeholder="e.g. 500" />
+          </div>
+          <div class="ob-fg ob-fg-full">
+            <label class="ob-label">Fitness Level</label>
+            <div class="ob-radio-group" id="ob_fitnessLevel">
+              <div class="ob-radio-btn selected" data-val="beginner">🌱 Beginner</div>
+              <div class="ob-radio-btn" data-val="intermediate">⚡ Intermediate</div>
+              <div class="ob-radio-btn" data-val="advanced">🔥 Advanced</div>
+              <div class="ob-radio-btn" data-val="athlete">🏆 Athlete</div>
+            </div>
+          </div>
+        </div>
+        <div class="ob-nav">
+          <button class="ob-btn-back" id="obBack2">← Back</button>
+          <button class="ob-btn-next" id="obFinish">🚀 Launch Dashboard</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="app">
+
+    <!-- SIDEBAR  -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-ring"></div>
+        <div class="logo-text">Fitness<span>UI</span></div>
+      </div>
+
+      <div class="nav-section-label">Overview</div>
+      <a class="nav-link active" href="#" data-view="summary">
+        <svg viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        Summary
+      </a>
+      <a class="nav-link" href="#" data-view="activity">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M2 12 L5 7 L8 9 L11 4 L14 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        Activity
+      </a>
+      <a class="nav-link" href="#" data-view="workouts">
+        <svg viewBox="0 0 16 16" fill="none">
+          <rect x="2" y="2" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5" />
+          <rect x="9" y="2" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5" />
+          <rect x="2" y="9" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5" />
+          <rect x="9" y="9" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        Workouts
+      </a>
+
+      <div class="nav-section-label">Health</div>
+      <a class="nav-link" href="#" data-view="heartrate">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M8 13s-5-3.5-5-7a4 4 0 0 1 5-3.87A4 4 0 0 1 13 6c0 3.5-5 7-5 7Z" stroke="currentColor"
+            stroke-width="1.5" stroke-linejoin="round" />
+        </svg>
+        Heart Rate
+      </a>
+      <a class="nav-link" href="#" data-view="sleep">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M8 2v12M4 6l4-4 4 4M4 10l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        Sleep
+      </a>
+      <a class="nav-link" href="#" data-view="history">
+        <svg viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" />
+          <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+        History
+      </a>
+
+      <div class="sidebar-spacer"></div>
+
+      <div class="nav-section-label">Account</div>
+      <div class="sidebar-profile" id="accountBtn">
+        <div class="profile-avatar">
+          <svg viewBox="0 0 34 34" fill="none">
+            <rect width="34" height="34" fill="#2C2C2E" />
+            <circle cx="17" cy="13" r="5" fill="#888" />
+            <path d="M5 30c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="#888" />
+          </svg>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Balraj Singh</div>
+          <div class="profile-sub">Goal: 150 KCAL</div>
+        </div>
+      </div>
+
+      <div class="sidebar-credits">
+        <div class="credits-title">Team Members</div>
+        <div class="credits-member">Balraj Singh <span class="credits-id">24BCE0531</span></div>
+        <div class="credits-member">Shreyansh Khatri <span class="credits-id">24BCE0541</span></div>
+        <div class="credits-member">Ayansh Agarwal <span class="credits-id">24BDS0166</span></div>
+      </div>
+    </aside>
+
+    <!--  MAIN  -->
+    <div class="main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 id="topbarTitle">Summary</h1>
+          <div class="topbar-date" id="topbarDate">Wednesday, April 1, 2026</div>
+        </div>
+        <div class="topbar-right">
+          <div class="activity-level-banner" id="activityLevelBanner">
+            <div class="al-dot" id="alDot"></div>
+            <div class="al-label" id="alLabel">Activity Level</div>
+            <div class="al-badge" id="alBadge">—</div>
+          </div>
+          <div class="topbar-chip"><span class="dot dot-green"></span><span id="topChipGoal">Move Goal Crushed</span></div>
+          <div class="topbar-chip"><span class="dot dot-orange"></span><span id="topChipSteps">8,266 Steps</span></div>
+        </div>
+      </header>
+
+      <!--  VIEW: SUMMARY  -->
+      <div class="view-page active-view" id="view-summary">
+
+      <!-- CONTENT GRID -->
+      <div class="content">
+
+        <!--   LEFT COLUMN   -->
+        <div class="col-left">
+
+          <!-- Activity Ring Card -->
+          <div class="ring-card" id="openActivity">
+            <div class="card-label">Activity Ring <span class="chevron">›</span></div>
+            <div class="ring-layout">
+              <div class="ring-svg-wrap">
+                <svg class="ring-svg" viewBox="0 0 160 160">
+                  <defs>
+                    <linearGradient id="gMove" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#FF6090" />
+                      <stop offset="100%" style="stop-color:#FF004F" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="ring-track" cx="80" cy="80" r="70" />
+                  <circle class="ring-prog" id="mainRing" cx="80" cy="80" r="70" />
+                </svg>
+                <div class="ring-center">
+                  <div class="ring-center-pct">188%</div>
+                  <div class="ring-center-lbl">of goal</div>
+                </div>
+              </div>
+              <div class="ring-info">
+                <div class="ring-stat">
+                  <div class="ring-stat-name">Move</div>
+                  <div class="ring-stat-val c-move">282<span class="unit">/150 KCAL</span></div>
+                  <div class="mini-progress">
+                    <div class="mini-progress-fill" id="moveFill" style="background:var(--move)"></div>
+                  </div>
+                </div>
+                <div class="ring-stat">
+                  <div class="ring-stat-name">Total Active</div>
+                  <div class="ring-stat-val" style="color:#fff;font-size:22px">1,950<span class="unit"> KCAL</span>
+                  </div>
+                </div>
+                <div class="ring-stat" style="margin-bottom:0">
+                  <div class="ring-stat-name">Goal Progress</div>
+                  <div class="ring-stat-val" style="color:#FF9F0A;font-size:22px">188%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /col-left -->
+
+        <!--   STAT CARDS (top-right)  -->
+        <div class="stat-cards">
+
+          <!-- Distance (now s1, was s2) -->
+          <div class="stat-card s1" id="openDistance">
+            <div class="stat-icon-row">
+              <span class="stat-icon">📍</span>
+              <span class="stat-arr">›</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-dim);font-weight:600;margin-bottom:4px;">Distance · Today</div>
+            <div class="stat-val c-distance">5.84<span class="u">KM</span></div>
+            <div class="mini-bars" id="distSmall"></div>
+            <div class="mini-time-row"><span>12AM</span><span>6AM</span><span>12PM</span><span>6PM</span></div>
+          </div>
+
+          <!-- Walking Time  -->
+          <div class="stat-card s2">
+            <div class="stat-icon-row">
+              <span class="stat-icon">🚶</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-dim);font-weight:600;margin-bottom:4px;">Walking Time · Week</div>
+            <div class="stat-val c-walking">170<span class="u">M</span></div>
+            <div class="mini-bars" id="walkSmall"></div>
+            <div class="mini-time-row"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+          </div>
+
+          <!-- Elevation  -->
+          <div class="stat-card s3">
+            <div class="stat-icon-row">
+              <span class="stat-icon">⛰</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-dim);font-weight:600;margin-bottom:4px;">Elevation Gain · Week</div>
+            <div class="stat-val c-elev">53<span class="u">M</span></div>
+            <div class="mini-bars" id="elevSmall"></div>
+            <div class="mini-time-row"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+          </div>
+
+        </div><!-- /stat-cards -->
+
+        <!--   WORKOUT SUMMARY SEGMENT   -->
+        <div class="workout-summary-card" id="workoutSummaryCard" style="display:none; grid-column:2;">
+          <div class="card-label" style="margin-bottom:14px">Recent Workouts <span class="chevron">›</span></div>
+          <div class="workout-summary-list" id="workoutSummaryList"></div>
+        </div>
+
+        <!--   BIG CHART CARD (bottom-right)  -->
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div class="chart-card-title">Steps Today</div>
+            <div class="chart-tabs">
+              <div class="ctab active">D</div>
+              <div class="ctab">W</div>
+              <div class="ctab">M</div>
+              <div class="ctab">Y</div>
+            </div>
+          </div>
+          <div class="chart-total">8,266 <span>steps</span></div>
+          <div class="big-chart-area" id="mainBigChart">
+            <div class="y-labels">
+              <span>4,000</span><span>2,000</span><span>0</span>
+            </div>
+          </div>
+          <div class="x-labels">
+            <span>12 AM</span><span>3 AM</span><span>6 AM</span><span>9 AM</span>
+            <span>12 PM</span><span>3 PM</span><span>6 PM</span><span>9 PM</span>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /view-summary -->
+
+      <!--  VIEW: ACTIVITY  -->
+      <div class="view-page" id="view-activity">
+        <div class="activity-view-scroll">
+          <div class="activity-view-header">
+            <div>
+              <div class="activity-view-title">Weekly Activity Log</div>
+              <div class="activity-view-sub">Log your steps, calories and distance for each day — updates your This Week rings on the dashboard.</div>
+            </div>
+            <button class="av-save-btn" id="avSaveBtn">💾 Save &amp; Update Dashboard</button>
+          </div>
+
+          <div class="av-grid" id="avGrid">
+            <!-- JS -->
+          </div>
+
+          <!-- Summary row -->
+          <div class="av-summary" id="avSummary" style="display:none">
+            <div class="av-sum-card">
+              <div class="av-sum-val" id="avSumSteps">—</div>
+              <div class="av-sum-lbl">Total Steps</div>
+            </div>
+            <div class="av-sum-card">
+              <div class="av-sum-val" id="avSumCal" style="color:var(--move)">—</div>
+              <div class="av-sum-lbl">Total Calories</div>
+            </div>
+            <div class="av-sum-card">
+              <div class="av-sum-val" id="avSumDist" style="color:var(--distance)">—</div>
+              <div class="av-sum-lbl">Total Distance</div>
+            </div>
+            <div class="av-sum-card">
+              <div class="av-sum-val" id="avSumMin" style="color:var(--walking)">—</div>
+              <div class="av-sum-lbl">Active Minutes</div>
+            </div>
+            <div class="av-sum-card">
+              <div class="av-sum-val" id="avSumBest" style="color:var(--steps)">—</div>
+              <div class="av-sum-lbl">Best Day</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  VIEW: WORKOUTS  -->
+      <div class="view-page" id="view-workouts">
+        <div class="workout-view-scroll">
+          <div class="workout-view-header">
+            <div>
+              <div class="activity-view-title">Workouts</div>
+              <div class="activity-view-sub">Log your sessions and track progress. Each workout appears as a card below.</div>
+            </div>
+            <button class="av-save-btn" id="openWorkoutModal">＋ Log Workout</button>
+          </div>
+          <div id="workoutCardList" class="workout-card-list">
+            <div class="workout-empty" id="workoutEmpty">
+              <div style="font-size:48px;margin-bottom:12px">🏋️</div>
+              <div style="font-size:18px;font-weight:800;margin-bottom:6px">No workouts yet</div>
+              <div style="font-size:13px;color:var(--text-dim)">Click "Log Workout" to add your first session.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  VIEW: HEART RATE  -->
+      <div class="view-page" id="view-heartrate">
+        <div class="view-placeholder">
+          <div class="view-placeholder-icon">❤️</div>
+          <div class="view-placeholder-title">Heart Rate</div>
+          <div class="view-placeholder-sub">Monitor your resting heart rate, recovery score and real-time BPM trends throughout the day.</div>
+          <div class="view-placeholder-badge">💓 72 BPM resting avg</div>
+        </div>
+      </div>
+
+      <!--  VIEW: SLEEP  -->
+      <div class="view-page" id="view-sleep">
+        <div class="view-placeholder">
+          <div class="view-placeholder-icon">🌙</div>
+          <div class="view-placeholder-title">Sleep</div>
+          <div class="view-placeholder-sub">Track your sleep stages, quality score and restfulness to optimise your recovery.</div>
+          <div class="view-placeholder-badge">😴 7h 42m last night</div>
+        </div>
+      </div>
+
+      <!--  VIEW: HISTORY -->
+      <div class="view-page" id="view-history">
+        <div class="view-placeholder">
+          <div class="view-placeholder-icon">🕐</div>
+          <div class="view-placeholder-title">History</div>
+          <div class="view-placeholder-sub">Browse your complete activity archive with trends, milestones and long-term progress charts.</div>
+          <div class="view-placeholder-badge">📅 Active since Jan 2024</div>
+        </div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /app -->
+
+  <!-- ACCOUNT MODAL -->
+  <div class="modal-overlay" id="accountModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Account Settings</div>
+        <button class="modal-close" id="modalClose">×</button>
+      </div>
+      <div class="modal-avatar-row">
+        <div class="modal-avatar">
+          <svg viewBox="0 0 64 64" fill="none">
+            <rect width="64" height="64" fill="#2C2C2E"/>
+            <circle cx="32" cy="24" r="10" fill="#888"/>
+            <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" fill="#888"/>
+          </svg>
+        </div>
+        <div class="modal-avatar-info">
+          <div class="modal-avatar-name" id="modalAvatarName">Balraj Singh</div>
+          <div class="modal-avatar-sub" id="modalAvatarSub">Goal: 150 KCAL · Pro Member</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input class="form-input" id="fieldFirstName" type="text" value="Balraj" placeholder="First name"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" id="fieldLastName" type="text" value="Singh" placeholder="Last name"/>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Email</label>
+          <input class="form-input" id="fieldEmail" type="email" value="balraj.singh@example.com" placeholder="Email address"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Age</label>
+          <input class="form-input" id="fieldAge" type="number" value="28" min="10" max="120" placeholder="Age"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gender</label>
+          <select class="form-input" id="fieldGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="prefer-not">Prefer not to say</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Weight (kg)</label>
+          <input class="form-input" id="fieldWeight" type="number" value="74" min="20" max="300" placeholder="Weight"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Height (cm)</label>
+          <input class="form-input" id="fieldHeight" type="number" value="178" min="50" max="250" placeholder="Height"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Daily Step Goal</label>
+          <input class="form-input" id="fieldStepGoal" type="number" value="10000" min="1000" max="50000" placeholder="Step goal"/>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Move Goal (KCAL / day)</label>
+          <input class="form-input" id="fieldMoveGoal" type="number" value="150" min="50" max="2000" placeholder="Move goal"/>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" id="modalCancelBtn">Cancel</button>
+        <button class="btn-primary" id="modalSaveBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">✓ Account updated successfully</div>
+
+  <!-- Bar tooltip -->
+  <div class="bar-tooltip" id="barTooltip">
+    <span class="tip-label">Steps</span>
+    <span id="barTooltipVal">0</span>
+  </div>
+
+
+  <!--DETAIL PANEL BACKDROP-->
+  <div class="panel-backdrop" id="backdrop"></div>
+
+
+  <!--DETAIL PANEL: ACTIVITY  -->
+  <div class="detail-panel" id="panelActivity">
+    <div class="panel-header">
+      <div class="close-btn" data-close>×</div>
+      <div class="panel-title">Activity</div>
+    </div>
+    <div class="panel-body">
+
+      <div class="activity-big-ring">
+        <svg class="abr-svg" viewBox="0 0 180 180">
+          <defs>
+            <linearGradient id="gMoveBig" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#FF6090" />
+              <stop offset="100%" style="stop-color:#FF004F" />
+            </linearGradient>
+          </defs>
+          <circle class="abr-track" cx="90" cy="90" r="80" />
+          <circle class="abr-prog" id="panelRing" cx="90" cy="90" r="80" />
+        </svg>
+      </div>
+
+      <div class="panel-stat-row">
+        <div class="pstat">
+          <div class="pstat-val" id="actPanelMoveKcal">282</div>
+          <div class="pstat-lbl">Move KCAL</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val" style="color:#fff" id="actPanelTotalKcal">1,950</div>
+          <div class="pstat-lbl">Total KCAL</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-val" style="color:#FF9F0A" id="actPanelGoalPct">188%</div>
+          <div class="pstat-lbl">Goal</div>
+        </div>
+      </div>
+
+      <div class="panel-total-label">Total Calories</div>
+      <div class="panel-total-val c-move" id="actPanelTotalBig">1,950<span style="font-size:22px;letter-spacing:0"> KCAL</span></div>
+      <div class="panel-today">Today · 1 Apr 2026</div>
+
+      <div class="panel-chart" id="activityPanelChart">
+        <div class="pchart-y"><span>1,950</span><span>1,000</span><span>500</span><span>0</span></div>
+      </div>
+      <div class="pchart-x"><span>12:00</span><span>6:00</span><span>12:00</span><span>6:00</span></div>
+
+      <button class="panel-cta c-move">View All Activity Metrics</button>
+    </div>
+  </div>
+
+
+  <!--DETAIL PANEL: STEPS (kept for panel navigation, but hidden from main UI)-->
+  <div class="detail-panel" id="panelSteps" style="display:none">
+    <div class="panel-header">
+      <div class="close-btn" data-close>×</div>
+      <div class="panel-title">Step Count</div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-tabs">
+        <div class="ptab active">D</div>
+        <div class="ptab">W</div>
+        <div class="ptab">M</div>
+        <div class="ptab">Y</div>
+      </div>
+      <div class="panel-total-label">Total</div>
+      <div class="panel-total-val c-steps" id="stepsPanelTotal">8,266</div>
+      <div class="panel-today">Today</div>
+
+      <div class="panel-chart" id="stepsPanelChart">
+        <div class="pchart-y"><span>4,000</span><span>2,000</span><span>0</span></div>
+      </div>
+      <div class="pchart-x"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span></div>
+      <button class="panel-cta c-steps">View All Steps Metrics</button>
+    </div>
+  </div>
+
+
+  <!-- DETAIL PANEL: DISTANCE-->
+  <div class="detail-panel" id="panelDistance">
+    <div class="panel-header">
+      <div class="close-btn" data-close>×</div>
+      <div class="panel-title">Step Distance</div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-tabs">
+        <div class="ptab active">D</div>
+        <div class="ptab">W</div>
+        <div class="ptab">M</div>
+        <div class="ptab">Y</div>
+      </div>
+      <div class="panel-total-label">Total</div>
+      <div class="panel-total-val c-distance">5.84<span style="font-size:24px;letter-spacing:0"> KM</span></div>
+      <div class="panel-today">Today</div>
+
+      <div class="panel-chart" id="distancePanelChart">
+        <div class="pchart-y"><span>3.00</span><span>1.50</span><span>0.00</span></div>
+      </div>
+      <div class="pchart-x"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span></div>
+      <button class="panel-cta c-distance">View All Steps Metrics</button>
+    </div>
+  </div>
+	
+	<script src="fitness_js_proj.js"></script>
+	
+  </body>
+</html>
